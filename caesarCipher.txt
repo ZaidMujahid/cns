@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    string alpha="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    string s;
+    string enc;
+    string dec;
+    int key;
+    cout<<"Enter String: ";
+    cin>>s;
+    cout<<"Enter Key: ";
+    cin>>key;
+    for(int i=0;i<s.length();i++){
+        enc += alpha[(alpha.find(s[i])+key)%alpha.length()];
+    }
+    cout<<enc<<endl;
+    for(int i=0;i<enc.length();i++){
+        dec+=alpha[(alpha.find(enc[i])-key)%alpha.length()];
+    }
+    cout<<dec;
+    return 0;
+}
