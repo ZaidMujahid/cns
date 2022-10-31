@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String pt;
+        int key;
+                
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter text to encrypt : ");
+        pt = s.nextLine();
+        System.out.print("Enter key for encryption : ");
+        key = s.nextInt();
+
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#";
+        
+        String Enc = "";
+
+        for(int i=0; i< pt.length(); i++) {
+            Enc += chars.charAt((chars.indexOf(pt.charAt(i)) + key) % chars.length());
+        }
+    
+        System.out.println("Encrypted text is: "+Enc);
+
+        String Dec = "";
+
+        for(int i=0; i< Enc.length(); i++) {
+            int index = chars.indexOf(Enc.charAt(i)) - key;
+            if(index < 0) {
+                Dec += chars.charAt(chars.length() + index);
+            } else {
+                Dec += chars.charAt(index);
+            }
+        }
+    System.out.println("Decrypted text is: "+Dec);
+    }
+}
